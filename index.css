@@ -1,0 +1,36 @@
+.flex {
+    display: flex;
+  }
+.body{
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(78, 9, 121, 0.6083683473389356) 35%,
+      rgba(0, 185, 255, 1) 100%);
+      justify-content:center;
+}
+
+
+.body__buttons {
+    margin-top: 17rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons__button{
+    text-decoration: none;
+    border:1px solid white;
+    border-radius: 10px;
+    padding:1rem;
+    margin:1rem;
+    color:white;
+    font-size: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+.buttons__button:hover {
+    transform: scale(1.1);
+  }
