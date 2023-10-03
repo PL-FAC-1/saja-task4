@@ -7,7 +7,9 @@ const productImage = document.getElementById("image");
 const productCateogry = document.getElementById("category");
 const formInputs = document.querySelectorAll("input");
 const productsList = document.getElementById("productsList");
+const editBlock = document.getElementById("editBlock");
 const displayButton = document.getElementById("displayProducts");
+
 //variables
 let products = [];
 
@@ -128,18 +130,95 @@ function deleteProduct(productId) {
   products = products.filter((product) => product.id != productId);
   addToLocalStorage(products);
 }
-///////////
+////edit function
+function editProduct(product) {
+    editBlock.innerHTML = "";
+    editBlock.innerHTML += `
+      <form class="flex editBlock__editForm" id="editForm">
+      <label for="nameEdit">Product Name:</label>
+      <input
+          id="nameEdit"
+          type="text"
+          class="editForm__name"
+          placeholder="Enter Product name:"
+          value=${product.name}
+      />
+      <label for="detailEdit">Product detail:</label>
+      <input
+          id="detailEdit"
+          type="text"
+          class="editForm__name"
+          placeholder="Enter Product details:"
+          value=${product.detail}
+      />
+      <label for="priceEdit">Product price:</label>
+      <input
+          id="priceEdit"
+          type="number"
+          min="1"
+          class="editForm__price"
+          placeholder="Enter Product Price:"
+          value=${product.price}
+      />
+      <label for="imageEdit">Product Image:</label>
+      <input
+          id="imageEdit"
+          type="url"
+          class="editForm__iamge"
+          placeholder="Enter Product Image link:"
+          value=${product.image}
+      />
+      <label for="categoryEdit">Product Category:</label>
+      <select class="editForm_category" id="categoryEdit">
+          <option value="Sport">Sport</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Grocery">Grocery</option>
+      </select>
+      <button type="submit" class="editForm__submit">Edit Product</button>
+      </form>
+  `;
+    const categoryEdit = document.getElementById("categoryEdit");
+    categoryEdit.value = product.category;
+    ///edit constnts
+    const editForm = document.getElementById("editForm");
+    const nameEdit = document.getElementById("nameEdit");
+    const detailEdit = document.getElementById("detailEdit");
+    const priceEdit = document.getElementById("priceEdit");
+    const imageEdit = document.getElementById("imageEdit");
+    //edit eventlistener
+    editForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (formValidation(nameEdit, detailEdit, priceEdit, imageEdit)) {
+        products.map((productElement) => {
+          if (productElement.id == product.id) {
+            productElement.name = nameEdit.value;
+            productElement.detail = detailEdit.value;
+            productElement.price = priceEdit.value;
+            productElement.image = imageEdit.value;
+            productElement.category = categoryEdit.value;
+          }
+        });
+        editForm.remove();
+        addToLocalStorage();
+        displayProducts(products);
+      } else {
+        alert("plaese fill all fields");
+      }
+    });
+  }
+///////////for testing
 function clearProducts() {
-  //for testing
   products = [];
 }
 
+
 /////exports
-// module.exports = {
-//   formValidation,
-//   getfromLocalStorage,
-//   addToLocalStorage,
-//   addProduct,
-//   clearProducts,
-//   deleteProduct,
-// };
+module.exports = {
+  formValidation,
+  getfromLocalStorage,
+  addToLocalStorage,
+  addProduct,
+  clearProducts,
+  deleteProduct,
+};

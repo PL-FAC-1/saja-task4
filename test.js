@@ -5,6 +5,7 @@ const {
   addProduct,
   clearProducts,
   deleteProduct,
+//   editForm
 } = require("./seller/seller");
 const localStorageMock = (() => {
   let store = {};
@@ -168,3 +169,4 @@ describe("deleteProduct", () => {
     expect(products.length).toBe(length - 1);
   });
 });
+
