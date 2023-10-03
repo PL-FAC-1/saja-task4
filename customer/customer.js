@@ -35,9 +35,9 @@ function displayCustomerProducts(products) {
 }
 displayCustomerProducts(products);
 
-//search 
-if(searchInput){
-    searchInput.addEventListener("input", searchProduct);
+//search
+if (searchInput) {
+  searchInput.addEventListener("input", searchProduct);
 }
 
 // search function
@@ -66,15 +66,74 @@ function cartEventLinstener() {
 }
 ////addtoLocalStorageFunction
 function addToLocalStorage() {
-    window.localStorage.setItem("cart", JSON.stringify(cartProducts));
+  window.localStorage.setItem("cart", JSON.stringify(cartProducts));
+}
+
+///getfromLocalStorage
+function getfromLocalStorage() {
+  if (localStorage.getItem("cart")) {
+    cartProducts = JSON.parse(localStorage.getItem("cart"));
   }
-  
-  ///getfromLocalStorage
-  function getfromLocalStorage() {
-    if (localStorage.getItem("cart")) {
-      cartProducts = JSON.parse(localStorage.getItem("cart"));
-    }
-    return cartProducts;
-  }
+  return cartProducts;
+}
+getfromLocalStorage();
+
+/////add to cart
+function addToCart(productId) {
   getfromLocalStorage();
-  
+  const product = getProducts().find((product) => product.id == productId);
+  if (!cartProducts.some((cartProduct) => cartProduct.id == product.id)) {
+    cartProducts.push(product);
+    addToLocalStorage();
+  } else {
+    alert("already in cart!");
+  }
+}
+///////////display what in cart
+cartButton.addEventListener("click", () => {
+  displayCartProducts(getfromLocalStorage());
+});
+function displayCartProducts(cartProducts) {
+  customersCart.innerHTML = "";
+  cartProducts.forEach((product) => {
+    customersCart.innerHTML += `
+            <div class="flex products__product" product-id=${product.id}>
+                <img src=${product.image} alt="productImage" class="product__img">
+                <p calss="product__name">${product.name}</p>
+                <p class="product__price">${product.price} $</p>
+                <p class="product__cateogry">${product.category}</p>
+                <p class="product__detail">${product.detail}</p>
+                <button class="cartProduct__delete">Delete</button>
+            </div>`;
+  });
+  const price = cartTotalPrice(cartProducts);
+  customersCart.innerHTML += `
+            <div class="flex">
+                <p class="product__price">${price}</p>
+            </div>`;
+  cartDeleteEventLinstener();
+}
+///cartButtonEventLinstener
+function cartDeleteEventLinstener() {
+  const cartDelete = document.querySelectorAll(".cartProduct__delete");
+  cartDelete.forEach((button) => {
+    button.addEventListener("click", () => {
+      cartProductDelete(button.parentElement.getAttribute("product-id"));
+      button.parentElement.remove();
+    });
+  });
+}
+////cartDeleteproduct
+function cartProductDelete(productId) {
+  cartProducts = cartProducts.filter((product) => product.id != productId);
+  addToLocalStorage();
+  displayCartProducts(cartProducts);
+}
+/////totalPrice
+function cartTotalPrice(cartProducts) {
+  let price = 0;
+  cartProducts.forEach((product) => {
+    price = price + Number(product.price);
+  });
+  return price;
+}
