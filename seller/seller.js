@@ -6,6 +6,8 @@ const productPrice = document.getElementById("price");
 const productImage = document.getElementById("image");
 const productCateogry = document.getElementById("category");
 const formInputs = document.querySelectorAll("input");
+const productsList = document.getElementById("productsList");
+const displayButton=document.getElementById("displayProducts");
 //variables
 let products = [];
 
@@ -62,6 +64,31 @@ function addProduct(productName, productDetail, productPrice,productImage,produc
     alert("All Fields Are Required");
   }
 }
+//display button event listener
+///display evnt listener ****not done
+displayButton.addEventListener('click',()=>
+{
+  getfromLocalStorage();
+  displayProducts(products);
+}
+)
+//dispaly all products(addEvent)
+function displayProducts(products) {
+    productsList.innerHTML = "";
+    products.forEach((product) => {
+      productsList.innerHTML += `
+          <div class="flex products__product" product-id=${product.id}>
+              <img src=${product.image} alt="productImage" class="product__img">
+              <p calss="product__name">${product.name}</p>
+              <p class="product__price">${product.price} $</p>
+              <p class="product__cateogry">${product.category}</p>
+              <p class="product__detail">${product.detail}</p>
+              <button class="product__edit">Edit</button>
+              <button class="product__delete">Delete</button>
+          </div>`;
+    });
+    // productEventLinstener();
+  }
 ///////////
 function clearProducts() {//for testing
     products = [];
