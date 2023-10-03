@@ -9,6 +9,7 @@ const formInputs = document.querySelectorAll("input");
 const productsList = document.getElementById("productsList");
 const editBlock = document.getElementById("editBlock");
 const displayButton = document.getElementById("displayProducts");
+const searchInput = document.getElementById("searchInput");
 
 //variables
 let products = [];
@@ -132,8 +133,8 @@ function deleteProduct(productId) {
 }
 ////edit function
 function editProduct(product) {
-    editBlock.innerHTML = "";
-    editBlock.innerHTML += `
+  editBlock.innerHTML = "";
+  editBlock.innerHTML += `
       <form class="flex editBlock__editForm" id="editForm">
       <label for="nameEdit">Product Name:</label>
       <input
@@ -178,41 +179,57 @@ function editProduct(product) {
       <button type="submit" class="editForm__submit">Edit Product</button>
       </form>
   `;
-    const categoryEdit = document.getElementById("categoryEdit");
-    categoryEdit.value = product.category;
-    ///edit constnts
-    const editForm = document.getElementById("editForm");
-    const nameEdit = document.getElementById("nameEdit");
-    const detailEdit = document.getElementById("detailEdit");
-    const priceEdit = document.getElementById("priceEdit");
-    const imageEdit = document.getElementById("imageEdit");
-    //edit eventlistener
-    editForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (formValidation(nameEdit, detailEdit, priceEdit, imageEdit)) {
-        products.map((productElement) => {
-          if (productElement.id == product.id) {
-            productElement.name = nameEdit.value;
-            productElement.detail = detailEdit.value;
-            productElement.price = priceEdit.value;
-            productElement.image = imageEdit.value;
-            productElement.category = categoryEdit.value;
-          }
-        });
-        editForm.remove();
-        addToLocalStorage();
-        displayProducts(products);
-      } else {
-        alert("plaese fill all fields");
-      }
-    });
-  }
+  const categoryEdit = document.getElementById("categoryEdit");
+  categoryEdit.value = product.category;
+  ///edit constnts
+  const editForm = document.getElementById("editForm");
+  const nameEdit = document.getElementById("nameEdit");
+  const detailEdit = document.getElementById("detailEdit");
+  const priceEdit = document.getElementById("priceEdit");
+  const imageEdit = document.getElementById("imageEdit");
+  //edit eventlistener
+  editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (formValidation(nameEdit, detailEdit, priceEdit, imageEdit)) {
+      products.map((productElement) => {
+        if (productElement.id == product.id) {
+          productElement.name = nameEdit.value;
+          productElement.detail = detailEdit.value;
+          productElement.price = priceEdit.value;
+          productElement.image = imageEdit.value;
+          productElement.category = categoryEdit.value;
+        }
+      });
+      editForm.remove();
+      addToLocalStorage();
+      displayProducts(products);
+    } else {
+      alert("plaese fill all fields");
+    }
+  });
+}
 ///////////for testing
 function clearProducts() {
   products = [];
 }
 
-
+///search products eventlistener
+if (searchInput) {
+  searchInput.addEventListener("input", searchProduct);
+}
+//search function
+function searchProduct(searchEntry) {
+  getfromLocalStorage();
+  const productDisplayed = filterProducts(searchEntry);
+  displayProducts(productDisplayed);
+}
+//filterforSearch
+function filterProducts(searchEntry) {
+  const productDisplayed = products.filter((product) => {
+    return product.name.includes(searchEntry.target.value);
+  });
+  return productDisplayed;
+}
 /////exports
 // module.exports = {
 //   formValidation,
@@ -221,4 +238,5 @@ function clearProducts() {
 //   addProduct,
 //   clearProducts,
 //   deleteProduct,
+//   filterProducts
 // };
