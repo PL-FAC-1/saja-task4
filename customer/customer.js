@@ -137,3 +137,54 @@ function cartTotalPrice(cartProducts) {
   });
   return price;
 }
+/////////////
+/////////////////intersecton of filtering
+function performIntersection(
+  cateogries = getProducts(),
+  prices = getProducts()
+) {
+  const intersectionResult = cateogries.filter((cateogryElement) =>
+    prices.some((priceElement) => priceElement.id === cateogryElement.id)
+  );
+  return intersectionResult;
+}
+
+/////filter by cateogry
+filterCateogry.addEventListener("click", cateogryFiltering);
+function cateogryFiltering(cateogry) {
+  getProducts();
+  customersProduct.innerHTML = "";
+  cateogriesDisplayed = products.filter((product) => {
+    if (cateogry.target.value === "allCategories") {
+      return products;
+    } else {
+      return product.category === cateogry.target.value;
+    }
+  });
+  displayCustomerProducts(
+    performIntersection(cateogriesDisplayed, pricesDisplayed)
+  );
+}
+
+/////filter by prcice
+filterPrice.addEventListener("click", priceFiltering);
+function priceFiltering(price) {
+  getProducts();
+  customersProduct.innerHTML = " ";
+  pricesDisplayed = products.filter((product) => {
+    if (price.target.value === "allPrices") {
+      return products;
+    } else {
+      if (price.target.value == "low") {
+        return product.price >= 1 && product.price <= 2000;
+      } else if (price.target.value == "moderate") {
+        return product.price > 2000 && product.price <= 10000;
+      } else {
+        return product.price > 10000;
+      }
+    }
+  });
+  displayCustomerProducts(
+    performIntersection(cateogriesDisplayed, pricesDisplayed)
+  );
+}
