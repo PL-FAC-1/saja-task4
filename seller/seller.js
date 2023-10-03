@@ -214,11 +214,11 @@ function clearProducts() {
 
 
 /////exports
-module.exports = {
-  formValidation,
-  getfromLocalStorage,
-  addToLocalStorage,
-  addProduct,
-  clearProducts,
-  deleteProduct,
-};
+// module.exports = {
+//   formValidation,
+//   getfromLocalStorage,
+//   addToLocalStorage,
+//   addProduct,
+//   clearProducts,
+//   deleteProduct,
+// };
