@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce APP</title>
+    <link rel="stylesheet" href="customer.css" />
+  </head>
+  <body class="flex body" >
+    <header role="header" class="flex body__header" >
+        <h1>ECOMMERCE APP</h1>
+        <input
+          type="text"
+          class="header__search"
+          placeholder="SEARCH THE Product"
+          id="searchInput"
+        />
+        <button id="cartButton">Cart</button>
+        <select class="header__cateogry" id="filterCateogry" >
+            <option value="allCategories">allCategories</option>
+            <option value="Sport">Sport</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Grocery">Grocery</option>
+          </select>
+          <select class="header__price" id="filterPrice">
+            <option value="allPrices">allPrices</option>
+            <option value="low">1_2000</option>
+            <option value="moderate">2000_10000</option>
+            <option value="high">more than 10000</option>
+          </select>
+        <!-- <inp class="header__cateogry">cateogry</inp>
+        <a class="header__price">price</a> -->
+      </header>
+      <main role="main" class="mainCustomer">
+        <section class="mainCustomer__products" id="customersProduct">
+        </section>
+        <section class="mainCustomer__cart" id="customersCart">
+        </section>
+      </main>
+      <script  type="module" src="customer.js"></script>
+  </body>
+</html>
