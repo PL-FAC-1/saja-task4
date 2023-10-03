@@ -5,7 +5,7 @@ const {
   addProduct,
   clearProducts,
   deleteProduct,
-//   editForm
+  filterProducts,
 } = require("./seller/seller");
 const localStorageMock = (() => {
   let store = {};
@@ -169,4 +169,47 @@ describe("deleteProduct", () => {
     expect(products.length).toBe(length - 1);
   });
 });
-
+///filterforsearch testing
+describe("filterProducts", () => {
+  afterEach(() => {
+    // Clear localStorage afer test
+    localStorage.clear();
+  });
+  test("should delete product", () => {
+    const mockProducts = [
+      {
+        id: 0,
+        name: "car",
+        price: 1000,
+        detail: "white car",
+        image:
+          "https://res.cloudinary.com/carsxe/image/upload/f_auto,fl_lossy,q_auto/v1569282984/carsxe-api/purple_porsche.png",
+        category: "electronics",
+      },
+      {
+        id: 1,
+        name: "longcar",
+        price: 1000,
+        detail: "white car",
+        image:
+          "https://res.cloudinary.com/carsxe/image/upload/f_auto,fl_lossy,q_auto/v1569282984/carsxe-api/purple_porsche.png",
+        category: "electronics",
+      },
+      {
+        id: 2,
+        name: "chair",
+        price: 1000,
+        detail: "white chair",
+        image:
+          "https://res.cloudinary.com/carsxe/image/upload/f_auto,fl_lossy,q_auto/v1569282984/carsxe-api/purple_porsche.png",
+        category: "electronics",
+      },
+    ];
+    addToLocalStorage(mockProducts);
+    const productsAfter = filterProducts("car");
+    const result = productsAfter.every((element) =>
+      element.name.includes("car")
+    );
+    expect(result).toBe(true);
+  });
+});
