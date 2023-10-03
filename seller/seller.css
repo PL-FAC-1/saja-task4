@@ -1,0 +1,29 @@
+.flex {
+  display: flex;
+}
+.body {
+  margin: 0px;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.main__addform {
+  flex-direction: column;
+  align-items: center;
+}
+.main__products {
+  flex-wrap: wrap;
+}
+.products__product {
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 30px;
+}
+.product__img {
+  width: 100px;
+}
