@@ -4,26 +4,238 @@
 .body {
   margin: 0px;
   flex-direction: column;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.header {
-  display: flex;
+/* header */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.body__header {
+  cursor: pointer;
   margin: 0;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
+  background-color: #3b589e;
+  color: white;
+  font-size: 20px;
 }
-.main__addform {
+.header__nav {
+  justify-content: flex-start;
+  margin-left: 5vw;
+  align-items: center;
+  gap: 3vw;
+}
+.nav__search {
+  border: 1px solid white;
+  padding: 0.5rem 5rem;
+  border-radius: 20px;
+  font-size: 2vh;
+}
+.nav__links {
+  display: flex;
+  text-decoration: none;
+  color: white;
+}
+/* header to here  */
+.main__home {
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 80px;
 }
+
+.home__statment {
+  font-size: 3em;
+  font-weight: bold;
+  color: #3b589e;
+  text-align: left;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+  padding-top: 40px;
+  margin-bottom: 0px;
+  padding-left: 10vw;
+}
+.home__statment--padding {
+  margin-top: 0px;
+  padding-left: 15vw;
+}
+
+.home__addButton {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 4px;
+  background-color: #3b589e;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 10vh;
+  margin-left: 20vw;
+}
+
+.addButton__span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.span__link {
+  text-decoration: none;
+  color: white;
+}
+
+.home__addButton .addButton__span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.home__addButton:hover .addButton__span {
+  padding-right: 25px;
+}
+.home__addButton:hover .addButton__span:after {
+  opacity: 1;
+  right: 0;
+}
+/* products to here */
 .main__products {
   flex-wrap: wrap;
-}
-.products__product {
-  flex-direction: column;
-  border: 1px solid black;
-  margin: 30px;
+  margin-top: 30px;
+  align-items: ceneter;
+  justify-content: center;
+  background-color: rgb(59, 88, 158, 0.7);
 }
 .product__img {
   width: 100px;
 }
+
+.products__product {
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(59, 88, 158, 0.2);
+  margin: 30px;
+  max-width: 200px; /* Adjust the maximum width as needed */
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+.products__product:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.product__img {
+  max-width: 100%;
+  max-height: 30%;
+  height: auto;
+}
+
+.product__name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product__price {
+  font-size: 1.2em;
+  color: #3b589e;
+}
+
+.product__cateogry {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-style: italic;
+  margin: 5px 0;
+}
+
+.product__detail {
+  margin: 10px 0;
+}
+
+.product__edit,
+.product__delete {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(59, 88, 158);
+  width: 100px;
+  transition: all 0.3s ease-in-out;
+}
+.product__edit:hover,
+.product__delete:hover {
+  transform: scale(1.2);
+}
+/* products to here */
+
+.form {
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(59, 88, 158);
+  margin: 20px auto;
+  max-width: 400px; /* Adjust the maximum width as needed */
+}
+
+.form__label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form__input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form__label--edit {
+  margin: 10px 110px;
+}
+.form__submit {
+  background-color: rgb(59, 88, 158);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__submit:hover {
+  transform: scale(1.2);
+}
+
+/* footer */
+.main__footer {
+  justify-content: center;
+  background-color: rgb(59, 88, 158, 0.2);
+  color: #3b589e;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+}
+
+.footer__info {
+  margin: 0;
+  font-size: 14px;
+}
+
