@@ -3,8 +3,10 @@ const customersProduct = document.getElementById("customersProduct");
 const searchInput = document.getElementById("searchInput");
 const filterCateogry = document.getElementById("filterCateogry");
 const filterPrice = document.getElementById("filterPrice");
+const cartContainer = document.getElementById("cartContainer");
 const customersCart = document.getElementById("customersCart");
 const cartButton = document.getElementById("cartButton");
+const cartIndisplay = document.getElementById("cartIndisplay");
 ///vars
 let products = [];
 let cartProducts = [];
@@ -22,14 +24,14 @@ getProducts();
 function displayCustomerProducts(products) {
   products.forEach((product) => {
     customersProduct.innerHTML += `
-            <div class="flex products__product" product-id=${product.id}>
-                <img src=${product.image} alt="productImage" class="product__img">
-                <p calss="product__name">${product.name}</p>
-                <p class="product__price">${product.price} $</p>
-                <p class="product__cateogry">${product.category}</p>
-                <p class="product__detail">${product.detail}</p>
-                <button class="product__cartAdd">Add to cart</button>
-            </div>`;
+        <div class="flex products__product" product-id=${product.id}>
+        <img src=${product.image} alt="productImage" class="product__img">
+        <p class="product__name">${product.name}</p>
+        <p class="product__price">${product.price} $</p>
+        <p class="product__cateogry">${product.category}</p>
+        <p class="product__detail">${product.detail}</p>
+        <button class="product__cartAdd">Add to cart</button>
+          </div>`;
   });
   cartEventLinstener();
 }
@@ -45,7 +47,9 @@ function searchProduct(searchEntry) {
   getProducts();
   customersProduct.innerHTML = " ";
   const productDisplayed = products.filter((product) => {
-    return product.name.includes(searchEntry.target.value);
+    return product.name
+      .toLowerCase()
+      .includes(searchEntry.target.value.toLowerCase());
   });
 
   displayCustomerProducts(productDisplayed);
@@ -85,6 +89,9 @@ function addToCart(productId) {
   if (!cartProducts.some((cartProduct) => cartProduct.id == product.id)) {
     cartProducts.push(product);
     addToLocalStorage();
+    if (cartContainer.style.display == "flex") {
+      displayCartProducts(cartProducts);
+    }
   } else {
     alert("already in cart!");
   }
@@ -97,20 +104,22 @@ function displayCartProducts(cartProducts) {
   customersCart.innerHTML = "";
   cartProducts.forEach((product) => {
     customersCart.innerHTML += `
-            <div class="flex products__product" product-id=${product.id}>
-                <img src=${product.image} alt="productImage" class="product__img">
-                <p calss="product__name">${product.name}</p>
-                <p class="product__price">${product.price} $</p>
-                <p class="product__cateogry">${product.category}</p>
-                <p class="product__detail">${product.detail}</p>
+            <div class="flex cart__cartProduct" product-id=${product.id}>
+                <img src=${product.image} alt="productImage" class="cartProduct__img">
+                <div class="cartProduct__details">
+                <p class="details__name">${product.name}</p>
+                <p class="details__price">${product.price} $</p>
+                <p class="details__cateogry">${product.category}</p>
+                <p class="details__detail">${product.detail}</p>
+                </div>
                 <button class="cartProduct__delete">Delete</button>
-            </div>`;
+            </div>
+            `;
   });
+  const priceBlock = document.getElementById("price");
   const price = cartTotalPrice(cartProducts);
-  customersCart.innerHTML += `
-            <div class="flex">
-                <p class="product__price">${price}</p>
-            </div>`;
+  cartContainer.style.display = "flex";
+  priceBlock.textContent = `Total price is ${price} $`;
   cartDeleteEventLinstener();
 }
 ///cartButtonEventLinstener
@@ -137,6 +146,11 @@ function cartTotalPrice(cartProducts) {
   });
   return price;
 }
+//cart indisplay
+cartIndisplay.addEventListener("click", () => {
+  cartContainer.style.display = "none";
+});
+
 /////////////
 /////////////////intersecton of filtering
 function performIntersection(
@@ -158,7 +172,9 @@ function cateogryFiltering(cateogry) {
     if (cateogry.target.value === "allCategories") {
       return products;
     } else {
-      return product.category === cateogry.target.value;
+      return (
+        product.category.toLowerCase() === cateogry.target.value.toLowerCase()
+      );
     }
   });
   displayCustomerProducts(

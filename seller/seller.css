@@ -129,7 +129,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(59, 88, 158, 0.2);
   margin: 30px;
-  max-width: 200px; /* Adjust the maximum width as needed */
+  max-width: 200px;
   text-align: center;
   transition: all 0.3s ease-in-out;
 }
@@ -192,7 +192,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(59, 88, 158);
   margin: 20px auto;
-  max-width: 400px; /* Adjust the maximum width as needed */
+  max-width: 400px;
 }
 
 .form__label {
@@ -238,4 +238,3 @@
   margin: 0;
   font-size: 14px;
 }
-

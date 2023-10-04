@@ -5,46 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ecommerce APP</title>
     <link rel="stylesheet" href="customer.css" />
+    <link rel="stylesheet" href="media.css" />
   </head>
   <body class="flex body">
-    <header role="banner" class="sticky body__header">
+    <header role="banner" class="flex sticky body__header">
       <nav class="flex header__nav">
-        <h1>EazyShop</h1>
+        <h1 class="nav__title">EazyShop</h1>
         <input
           type="text"
-          class="input-field header__search"
+          class="input-field nav__search"
           placeholder="Search The Product"
           id="searchInput"
         />
-        <a>Home</a>
-        <a>Products</a>
-        <button id="cartButton">Cart</button>
-        <select class="header__cateogry" id="filterCateogry">
+        <a class="nav__links" href="#home">Home</a>
+        <a class="nav__links" href="#customersProduct">Products</a>
+        <select class="nav__select" id="filterCateogry">
           <option value="allCategories">allCategories</option>
           <option value="Sport">Sport</option>
           <option value="Clothes">Clothes</option>
           <option value="Electronics">Electronics</option>
         </select>
-        <select class="header__price" id="filterPrice">
+        <select class="nav__select" id="filterPrice">
           <option value="allPrices">allPrices</option>
           <option value="low">1_2000</option>
           <option value="moderate">2000_10000</option>
           <option value="high">more than 10000</option>
         </select>
+        <a href="#customersCart"
+          ><img alt="cart" src="../cart.png" id="cartButton" class="nav__cart"
+        /></a>
       </nav>
     </header>
-    <!-- <inp class="header__cateogry">cateogry</inp>
-        <a class="header__price">price</a> -->
-    <main role="main" class="mainCustomer">
-      <section role="region" class="flex main__home">
+    <main role="main" class="main">
+      <section role="region" class="flex main__home" id="home">
         <p class="home__statment">
           "&nbsp;Seamless Shopping, Effortless Experience:
         </p>
-        <p  class="home__statment home__statment--padding">Experience EazyShop Today!&nbsp;"</p>
-        <button class="home__button" style="vertical-align:middle"><span>Add Product</span></button>
+        <p class="home__statment home__statment--padding">
+          Experience EazyShop Today!&nbsp;"
+        </p>
+        <button class="home__shopButton">
+          <span class="shopButton__span"
+            ><a class="span__link" href="#customersProduct">Shop Now</a></span
+          >
+        </button>
       </section>
-      <section class="mainCustomer__products" id="customersProduct"></section>
-      <section class="mainCustomer__cart" id="customersCart"></section>
+      <section class="flex main__products" id="customersProduct"></section>
+      <section class="main__cart" id="cartContainer">
+        <p class="cart__title">Cart</p>
+        <p class="cart__price" id="price"></p>
+        <section class="flex cart__block" id="customersCart">
+        </section>
+        <button class="cart__button" id="cartIndisplay">Back to shopping!!</button>
+      </section>
+      <footer role="contentinfo" class="flex main__footer">
+        <p class="footer__info">&copy; 2023 Eazy Shopping</p>
+      </footer>
     </main>
     <script type="module" src="customer.js"></script>
   </body>
