@@ -20,7 +20,7 @@ let products = [
     detail: "High-performance running shoes for athletes.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
-    category: "sport",
+    category: "Sport",
   },
   {
     id: 1,
@@ -28,7 +28,7 @@ let products = [
     price: 799,
     detail: "The latest smartphone with advanced features.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ let products = [
     detail: "Comfortable cotton t-shirt for everyday wear.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
-    category: "clothes",
+    category: "Clothes",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ let products = [
     price: 1299,
     detail: "Powerful laptop for work and entertainment.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 4,
@@ -54,7 +54,7 @@ let products = [
     detail: "High-quality football for sports enthusiasts.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
-    category: "sport",
+    category: "Sport",
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ let products = [
     price: 129,
     detail: "Over-ear headphones for an immersive audio experience.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 6,
@@ -71,7 +71,7 @@ let products = [
     detail: "Stylish and comfortable jeans for a trendy look.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
-    category: "clothes",
+    category: "Clothes",
   },
   {
     id: 7,
@@ -80,7 +80,7 @@ let products = [
     detail: "Durable basketball suitable for indoor and outdoor play.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
-    category: "sport",
+    category: "Sport",
   },
   {
     id: 8,
@@ -88,7 +88,7 @@ let products = [
     price: 399,
     detail: "State-of-the-art gaming console for gaming enthusiasts.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 9,
@@ -97,7 +97,7 @@ let products = [
     detail: "Formal dress shirt for a sharp and professional look.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
-    category: "clothes",
+    category: "Clothes",
   },
   {
     id: 10,
@@ -106,7 +106,7 @@ let products = [
     detail: "Comfortable running shorts for active individuals.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
-    category: "sport",
+    category: "Sport",
   },
   {
     id: 11,
@@ -114,7 +114,7 @@ let products = [
     price: 69,
     detail: "Wireless earbuds for a tangle-free music experience.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 12,
@@ -123,7 +123,7 @@ let products = [
     detail: "Warm and cozy sweater for chilly days.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
-    category: "clothes",
+    category: "Clothes",
   },
   {
     id: 13,
@@ -132,7 +132,7 @@ let products = [
     detail: "High-quality yoga mat for a comfortable yoga practice.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
-    category: "sport",
+    category: "Sport",
   },
   {
     id: 14,
@@ -140,7 +140,7 @@ let products = [
     price: 499,
     detail: "Advanced digital camera for photography enthusiasts.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
-    category: "electronics",
+    category: "Electronics",
   },
   {
     id: 15,
@@ -149,7 +149,7 @@ let products = [
     detail: "Durable backpack for carrying essentials on the go.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
-    category: "clothes",
+    category: "Clothes",
   },
 ];
 getfromLocalStorage();
@@ -322,7 +322,7 @@ function editProduct(product) {
     </form>
 `;
   const categoryEdit = document.getElementById("categoryEdit");
-  categoryEdit.value = product.category;
+  categoryEdit.value = product.category.toLowerCase();
   ///edit constnts
   const editForm = document.getElementById("editForm");
   const nameEdit = document.getElementById("nameEdit");
