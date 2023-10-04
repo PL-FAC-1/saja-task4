@@ -12,8 +12,149 @@ const displayButton = document.getElementById("displayProducts");
 const searchInput = document.getElementById("searchInput");
 
 //variables
-let products = [];
-
+let products = [
+  {
+    id: 0,
+    name: "Running Shoes",
+    price: 79,
+    detail: "High-performance running shoes for athletes.",
+    image:
+      "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+    category: "sport",
+  },
+  {
+    id: 1,
+    name: "Smartphone",
+    price: 799,
+    detail: "The latest smartphone with advanced features.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 2,
+    name: "T-Shirt",
+    price: 24,
+    detail: "Comfortable cotton t-shirt for everyday wear.",
+    image:
+      "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
+    category: "clothes",
+  },
+  {
+    id: 3,
+    name: "Laptop",
+    price: 1299,
+    detail: "Powerful laptop for work and entertainment.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 4,
+    name: "Football",
+    price: 19,
+    detail: "High-quality football for sports enthusiasts.",
+    image:
+      "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+    category: "sport",
+  },
+  {
+    id: 5,
+    name: "Headphones",
+    price: 129,
+    detail: "Over-ear headphones for an immersive audio experience.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 6,
+    name: "Jeans",
+    price: 39,
+    detail: "Stylish and comfortable jeans for a trendy look.",
+    image:
+      "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
+    category: "clothes",
+  },
+  {
+    id: 7,
+    name: "Basketball",
+    price: 29,
+    detail: "Durable basketball suitable for indoor and outdoor play.",
+    image:
+      "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+    category: "sport",
+  },
+  {
+    id: 8,
+    name: "Gaming Console",
+    price: 399,
+    detail: "State-of-the-art gaming console for gaming enthusiasts.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 9,
+    name: "Dress Shirt",
+    price: 34,
+    detail: "Formal dress shirt for a sharp and professional look.",
+    image:
+      "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
+    category: "clothes",
+  },
+  {
+    id: 10,
+    name: "Running Shorts",
+    price: 19,
+    detail: "Comfortable running shorts for active individuals.",
+    image:
+      "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+    category: "sport",
+  },
+  {
+    id: 11,
+    name: "Wireless Earbuds",
+    price: 69,
+    detail: "Wireless earbuds for a tangle-free music experience.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 12,
+    name: "Sweater",
+    price: 29,
+    detail: "Warm and cozy sweater for chilly days.",
+    image:
+      "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
+    category: "clothes",
+  },
+  {
+    id: 13,
+    name: "Yoga Mat",
+    price: 24,
+    detail: "High-quality yoga mat for a comfortable yoga practice.",
+    image:
+      "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+    category: "sport",
+  },
+  {
+    id: 14,
+    name: "Digital Camera",
+    price: 499,
+    detail: "Advanced digital camera for photography enthusiasts.",
+    image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+    category: "electronics",
+  },
+  {
+    id: 15,
+    name: "Backpack",
+    price: 39,
+    detail: "Durable backpack for carrying essentials on the go.",
+    image:
+      "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
+    category: "clothes",
+  },
+];
+getfromLocalStorage();
+addToLocalStorage(products);
+displayProducts(products);
 //////addForm eventlistener(preventdefault, add the product)
 if (addForm) {
   addForm.addEventListener("submit", (event) => {
@@ -26,6 +167,7 @@ if (addForm) {
       productImage,
       productCateogry
     );
+    displayProducts(products);
   });
 }
 
@@ -94,7 +236,7 @@ function displayProducts(products) {
     productsList.innerHTML += `
           <div class="flex products__product" product-id=${product.id}>
               <img src=${product.image} alt="productImage" class="product__img">
-              <p calss="product__name">${product.name}</p>
+              <p class="product__name">${product.name}</p>
               <p class="product__price">${product.price} $</p>
               <p class="product__cateogry">${product.category}</p>
               <p class="product__detail">${product.detail}</p>
@@ -133,52 +275,52 @@ function deleteProduct(productId) {
 }
 ////edit function
 function editProduct(product) {
+  addForm.style.display = "none";
   editBlock.innerHTML = "";
   editBlock.innerHTML += `
-      <form class="flex editBlock__editForm" id="editForm">
-      <label for="nameEdit">Product Name:</label>
-      <input
-          id="nameEdit"
-          type="text"
-          class="editForm__name"
-          placeholder="Enter Product name:"
-          value=${product.name}
-      />
-      <label for="detailEdit">Product detail:</label>
-      <input
-          id="detailEdit"
-          type="text"
-          class="editForm__name"
-          placeholder="Enter Product details:"
-          value=${product.detail}
-      />
-      <label for="priceEdit">Product price:</label>
-      <input
-          id="priceEdit"
-          type="number"
-          min="1"
-          class="editForm__price"
-          placeholder="Enter Product Price:"
-          value=${product.price}
-      />
-      <label for="imageEdit">Product Image:</label>
-      <input
-          id="imageEdit"
-          type="url"
-          class="editForm__iamge"
-          placeholder="Enter Product Image link:"
-          value=${product.image}
-      />
-      <label for="categoryEdit">Product Category:</label>
-      <select class="editForm_category" id="categoryEdit">
-          <option value="Sport">Sport</option>
-          <option value="Clothes">Clothes</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Grocery">Grocery</option>
-      </select>
-      <button type="submit" class="editForm__submit">Edit Product</button>
-      </form>
-  `;
+    <form class="flex form" id="editForm">
+    <label  class="form__label" for="nameEdit">Product Name:</label>
+    <input
+        id="nameEdit"
+        type="text"
+        class="form__input"
+        placeholder="Enter Product name:"
+        value="${product.name}"
+    />
+    <label  class="form__label--edit form__label" for="detailEdit">Product detail:</label>
+    <input
+        id="detailEdit"
+        type="text"
+        class="form__input"
+        placeholder="Enter Product details:"
+        value="${product.detail}"
+    />
+    <label  class="form__label" for="priceEdit">Product price:</label>
+    <input
+        id="priceEdit"
+        type="number"
+        min="1"
+        class="form__input"
+        placeholder="Enter Product Price:"
+        value="${product.price}"
+    />
+    <label  class="form__label" for="imageEdit">Product Image:</label>
+    <input
+        id="imageEdit"
+        type="url"
+        class="form__input"
+        placeholder="Enter Product Image link:"
+        value="${product.image}"
+    />
+    <label  class="form__label" for="categoryEdit">Product Category:</label>
+    <select id="categoryEdit" class="form__input">
+        <option value="sport">Sport</option>
+        <option value="clothes">Clothes</option>
+        <option value="electronics">Electronics</option>
+    </select>
+    <button type="submit" class="form__submit">Edit Product</button>
+    </form>
+`;
   const categoryEdit = document.getElementById("categoryEdit");
   categoryEdit.value = product.category;
   ///edit constnts
@@ -201,7 +343,8 @@ function editProduct(product) {
         }
       });
       editForm.remove();
-      addToLocalStorage();
+      addForm.style.display = "flex";
+      addToLocalStorage(products);
       displayProducts(products);
     } else {
       alert("plaese fill all fields");
@@ -226,7 +369,9 @@ function searchProduct(searchEntry) {
 //filterforSearch
 function filterProducts(searchEntry) {
   const productDisplayed = products.filter((product) => {
-    return product.name.includes(searchEntry.target.value);
+    return product.name
+      .toLowerCase()
+      .includes(searchEntry.target.value.toLowerCase());
   });
   return productDisplayed;
 }

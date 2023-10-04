@@ -5,65 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ecommerce APP</title>
     <link rel="stylesheet" href="seller.css" />
+    <link rel="stylesheet" href="media.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body class="body">
-    <header role="header" class="flex header">
-      <h1>ECOMMERCE APP</h1>
-      <input
-        type="text"
-        class="header__search"
-        placeholder="SEARCH THE Product"
-        id="searchInput"
-      />
-      <a>Add Product</a>
+    <header role="banner" class="flex sticky body__header">
+      <nav class="flex header__nav">
+        <h1 class="nav__title">EazyShop</h1>
+        <input
+          type="text"
+          class="input-field nav__search"
+          placeholder="Search The Product"
+          id="searchInput"
+        />
+        <a class="nav__links" href="#home">Home</a>
+        <a class="nav__links" href="#productsList">Products</a>
+      </nav>
     </header>
     <main role="main" class="main">
-      <form class="flex main__addform" id="addForm">
-        <label for="name">Product Name:</label>
+      <section role="region" class="flex main__home" id="home">
+        <p class="home__statment">
+          "&nbsp;Seamless Shopping, Effortless Experience:
+        </p>
+        <p class="home__statment home__statment--padding">
+          Experience EazyShop Today!&nbsp;"
+        </p>
+        <button class="home__addButton">
+          <span class="addButton__span"
+            ><a class="span__link" href="#addForm">Add Product</a></span
+          >
+        </button>
+      </section>
+      <section class="flex main__products" id="productsList"></section>
+      <form class="flex form" id="addForm">
+        <label class="form__label" for="name">Product Name:</label>
         <input
           id="name"
           type="text"
-          class="addform__name"
+          class="form__input"
           placeholder="Enter Product name:"
         />
-        <label for="detail">Product detail:</label>
+        <label class="form__label" for="detail">Product detail:</label>
         <input
           id="detail"
           type="text"
-          class="addform__name"
+          class="form__input"
           placeholder="Enter Product details:"
         />
-        <label for="price">Product price:</label>
+        <label class="form__label" for="price">Product price:</label>
         <input
           id="price"
           type="number"
           min="1"
-          class="addform__price"
+          class="form__input"
           placeholder="Enter Product Price:"
         />
-        <label for="image">Product Image:</label>
+        <label class="form__label" for="image">Product Image:</label>
         <input
           id="image"
           type="url"
-          class="addform__iamge"
+          class="form__input"
           placeholder="Enter Product Image link:"
         />
-        <label for="category">Product Category:</label>
-        <select class="addform__category" id="category">
+        <label class="form__label" for="category">Product Category:</label>
+        <select class="form__input" id="category">
           <option value="Sport">Sport</option>
           <option value="Clothes">Clothes</option>
           <option value="Electronics">Electronics</option>
-          <option value="Grocery">Grocery</option>
         </select>
-        <button type="submit" class="addform__submit">Add Product</button>
+        <button type="submit" class="form__submit">Add Product</button>
       </form>
-      <button class="main__display" id="displayProducts">
-        display Product
-      </button>
-      <section class="flex main__products" id="productsList"></section>
       <section class="flex mian__editBlock" id="editBlock"></section>
     </main>
-    <footer></footer>
+
+    <footer role="contentinfo" class="flex main__footer">
+      <p class="footer__info">&copy; 2023 Eazy Shopping</p>
+    </footer>
     <script type="module" src="seller.js"></script>
   </body>
 </html>
