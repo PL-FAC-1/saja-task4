@@ -41,36 +41,40 @@
       </section>
       <section class="flex main__products" id="productsList"></section>
       <form class="flex form" id="addForm">
-        <label class="form__label" for="name">Product Name:</label>
+        <label class="form__label" for="name" >Product Name:</label>
         <input
           id="name"
           type="text"
           class="form__input"
           placeholder="Enter Product name:"
+          required
         />
-        <label class="form__label" for="detail">Product detail:</label>
+        <label class="form__label" for="detail" >Product detail:</label>
         <input
           id="detail"
           type="text"
           class="form__input"
           placeholder="Enter Product details:"
+          required
         />
-        <label class="form__label" for="price">Product price:</label>
+        <label class="form__label" for="price" >Product price:</label>
         <input
           id="price"
           type="number"
           min="1"
           class="form__input"
           placeholder="Enter Product Price:"
+          required
         />
-        <label class="form__label" for="image">Product Image:</label>
+        <label class="form__label" for="image" >Product Image:</label>
         <input
           id="image"
           type="url"
           class="form__input"
           placeholder="Enter Product Image link:"
+          required
         />
-        <label class="form__label" for="category">Product Category:</label>
+        <label class="form__label" for="category" >Product Category:</label>
         <select class="form__input" id="category">
           <option value="Sport">Sport</option>
           <option value="Clothes">Clothes</option>

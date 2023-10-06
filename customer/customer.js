@@ -12,7 +12,6 @@ const displaySelect = document.getElementById("displaySelect");
 ///vars
 let products = [];
 let cartProducts = [];
-let productDisplayed;
 let cateogriesDisplayed;
 let pricesDisplayed;
 
@@ -252,3 +251,7 @@ function finalPrice(price) {
   });
   return pricesDisplayed;
 }
+
+// module.exports = {
+//   searchResult
+// };

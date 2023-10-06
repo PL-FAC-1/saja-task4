@@ -8,7 +8,6 @@ const productCateogry = document.getElementById("category");
 const formInputs = document.querySelectorAll("input");
 const productsList = document.getElementById("productsList");
 const editBlock = document.getElementById("editBlock");
-const displayButton = document.getElementById("displayProducts");
 const searchInput = document.getElementById("searchInput");
 
 //variables
@@ -170,12 +169,10 @@ if (addForm) {
     displayProducts(products);
   });
 }
-
 ////addtProductsToLocalStorageFunction
 function addToLocalStorage(products) {
   window.localStorage.setItem("products", JSON.stringify(products));
 }
-
 // ///getfromLocalStorage
 function getfromLocalStorage() {
   if (localStorage.getItem("products")) {
@@ -183,16 +180,7 @@ function getfromLocalStorage() {
   }
   return products;
 }
-// ////form validation
-function formValidation(name, detail, price, image) {
-  return (
-    name.value.length > 0 &&
-    detail.value.length > 0 &&
-    price.value.length > 0 &&
-    image.value.length > 0
-  );
-}
-// //adding the product to the list , update id,getfromlocalstorage, push to localstorage
+////adding the product to the list , update id,getfromlocalstorage, push to localstorage
 function addProduct(
   productName,
   productDetail,
@@ -200,51 +188,41 @@ function addProduct(
   productImage,
   productCateogry
 ) {
-  if (formValidation(productName, productDetail, productPrice, productImage)) {
-    const name = productName.value;
-    const price = productPrice.value;
-    const detail = productDetail.value;
-    const image = productImage.value;
-    const category = productCateogry.value;
-    const product = {
-      id: Date.now(),
-      name,
-      price,
-      detail,
-      image,
-      category,
-    };
-    products.push(product);
-    addToLocalStorage(products);
-    formInputs.forEach((input) => (input.value = ""));
-  } else {
-    alert("All Fields Are Required");
-  }
-}
-//display button event listener
-if (displayButton) {
-  displayButton.addEventListener("click", () => {
-    getfromLocalStorage();
-    displayProducts(products);
-  });
+  const name = productName.value;
+  const price = productPrice.value;
+  const detail = productDetail.value;
+  const image = productImage.value;
+  const category = productCateogry.value;
+  const product = {
+    id: Date.now(),
+    name,
+    price,
+    detail,
+    image,
+    category,
+  };
+  products.push(product);
+  addToLocalStorage(products);
+  formInputs.forEach((input) => (input.value = ""));
 }
 
 //dispaly all products(addEvent)
 function displayProducts(products) {
-  productsList.innerHTML = "";
-  products.forEach((product) => {
-    productsList.innerHTML += `
-          <div class="flex products__product" product-id=${product.id}>
-              <img src=${product.image} alt="productImage" class="product__img">
-              <p class="product__name">${product.name}</p>
-              <p class="product__price">${product.price} $</p>
-              <p class="product__cateogry">${product.category}</p>
-              <p class="product__detail">${product.detail}</p>
-              <a class="product__edit" href="#editBlock">Edit</a>
-              <button class="product__delete">Delete</button>
-          </div>`;
-  });
-  productEventLinstener();
+    productsList.innerHTML = "";
+    products.forEach((product) => {
+      productsList.innerHTML += `
+            <div class="flex products__product" product-id=${product.id}>
+                <img src=${product.image} alt="productImage" class="product__img">
+                <p class="product__name">${product.name}</p>
+                <p class="product__price">${product.price} $</p>
+                <p class="product__cateogry">${product.category}</p>
+                <p class="product__detail">${product.detail}</p>
+                <a class="product__edit" href="#editBlock">Edit</a>
+                <button class="product__delete">Delete</button>
+            </div>`;
+    });
+    productEventLinstener();
+  
 }
 
 // delete and edit eventlistener
@@ -287,6 +265,7 @@ function editProduct(product) {
         class="form__input"
         placeholder="Enter Product name:"
         value="${product.name}"
+        required
     />
     <label  class="form__label--edit form__label" for="detailEdit">Product detail:</label>
     <input
@@ -295,6 +274,7 @@ function editProduct(product) {
         class="form__input"
         placeholder="Enter Product details:"
         value="${product.detail}"
+        required
     />
     <label  class="form__label" for="priceEdit">Product price:</label>
     <input
@@ -304,6 +284,7 @@ function editProduct(product) {
         class="form__input"
         placeholder="Enter Product Price:"
         value="${product.price}"
+        required
     />
     <label  class="form__label" for="imageEdit">Product Image:</label>
     <input
@@ -312,6 +293,7 @@ function editProduct(product) {
         class="form__input"
         placeholder="Enter Product Image link:"
         value="${product.image}"
+        required
     />
     <label  class="form__label" for="categoryEdit">Product Category:</label>
     <select id="categoryEdit" class="form__input">
@@ -333,23 +315,19 @@ function editProduct(product) {
   //edit eventlistener
   editForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (formValidation(nameEdit, detailEdit, priceEdit, imageEdit)) {
-      products.map((productElement) => {
-        if (productElement.id == product.id) {
-          productElement.name = nameEdit.value;
-          productElement.detail = detailEdit.value;
-          productElement.price = priceEdit.value;
-          productElement.image = imageEdit.value;
-          productElement.category = categoryEdit.value;
-        }
-      });
-      editForm.remove();
-      addForm.style.display = "flex";
-      addToLocalStorage(products);
-      displayProducts(products);
-    } else {
-      alert("plaese fill all fields");
-    }
+    products.map((productElement) => {
+      if (productElement.id == product.id) {
+        productElement.name = nameEdit.value;
+        productElement.detail = detailEdit.value;
+        productElement.price = priceEdit.value;
+        productElement.image = imageEdit.value;
+        productElement.category = categoryEdit.value;
+      }
+    });
+    editForm.remove();
+    addForm.style.display = "flex";
+    addToLocalStorage(products);
+    displayProducts(products);
   });
 }
 ///////////for testing
@@ -376,9 +354,8 @@ function filterProducts(searchEntry) {
   });
   return productDisplayed;
 }
-/////exports
+
 // module.exports = {
-//   formValidation,
 //   getfromLocalStorage,
 //   addToLocalStorage,
 //   addProduct,

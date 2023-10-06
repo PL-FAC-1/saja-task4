@@ -1,12 +1,15 @@
 const {
   getfromLocalStorage,
-  formValidation,
   addToLocalStorage,
   addProduct,
   clearProducts,
   deleteProduct,
   filterProducts,
 } = require("./seller/seller");
+// const {
+//   searchResult
+// } = require("./customer/customer");
+
 const localStorageMock = (() => {
   let store = {};
   return {
@@ -81,39 +84,6 @@ describe("getFromLocalStorage", () => {
     expect(products).toEqual(mockProducts);
   });
 });
-// //form validation
-describe("formValidation", () => {
-  test("should return true if all fields are non-empty", () => {
-    const result = formValidation(
-      { value: "Name" },
-      { value: "Details" },
-      { value: "100" },
-      { value: "image.jpg" }
-    );
-    expect(result).toBe(true);
-  });
-
-  test("should return false if any field is empty", () => {
-    const result = formValidation(
-      { value: "Name" },
-      { value: "" },
-      { value: "100" },
-      { value: "image.jpg" }
-    );
-    expect(result).toBe(false);
-  });
-
-  test("should return false if all fields are empty", () => {
-    const result = formValidation(
-      { value: "" },
-      { value: "" },
-      { value: "" },
-      { value: "" }
-    );
-    expect(result).toBe(false);
-  });
-});
-
 // //addProductTesting
 describe("addProduct", () => {
   beforeEach(() => {
@@ -133,17 +103,6 @@ describe("addProduct", () => {
     expect(products.length).toBe(1);
   });
 
-  test("should aalert when validation not passes", () => {
-    addProduct(
-      { value: "" },
-      { value: "" },
-      { value: "lkl" },
-      { value: "image.jpg" },
-      { value: "sport" }
-    );
-    const products = getfromLocalStorage();
-    expect(products.length).toBe(0);
-  });
 });
 // ///deleteProductTesting
 describe("deleteProduct", () => {
@@ -213,3 +172,26 @@ describe("filterProducts", () => {
     expect(result).toBe(true);
   });
 });
+// describe('searchResult function', () => {
+//   const productsToSearch = [
+//     { name: 'Product A' },
+//     { name: 'Product B' },
+//     { name: 'Another Product' },
+//   ];
+
+//   test('should filter products by search term (case insensitive)', () => {
+//     const searchEntry = { value: 'product' };
+//     const result = searchResult(searchEntry, productsToSearch);
+//     expect(result).toEqual([
+//       { name: 'Product A' },
+//       { name: 'Product B' },
+//       { name: 'Another Product' },
+//     ]);
+//   });
+
+//   test('should return an empty array if search term does not match any product', () => {
+//     const searchEntry = { value: 'Nonexistent Product' };
+//     const result = searchResult(searchEntry, productsToSearch);
+//     expect(result).toEqual([]);
+//   });
+// });
