@@ -16,7 +16,7 @@ let products = [
   {
     id: 0,
     name: "Running Shoes",
-    price: 79,
+    price: 10079,
     detail: "High-performance running shoes for athletes.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
@@ -25,7 +25,7 @@ let products = [
   {
     id: 1,
     name: "Smartphone",
-    price: 799,
+    price: 2799,
     detail: "The latest smartphone with advanced features.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
     category: "Electronics",
@@ -33,7 +33,7 @@ let products = [
   {
     id: 2,
     name: "T-Shirt",
-    price: 24,
+    price: 2024,
     detail: "Comfortable cotton t-shirt for everyday wear.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
@@ -42,7 +42,7 @@ let products = [
   {
     id: 3,
     name: "Laptop",
-    price: 1299,
+    price: 5299,
     detail: "Powerful laptop for work and entertainment.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
     category: "Electronics",
@@ -50,7 +50,7 @@ let products = [
   {
     id: 4,
     name: "Football",
-    price: 19,
+    price: 1519,
     detail: "High-quality football for sports enthusiasts.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
@@ -59,7 +59,7 @@ let products = [
   {
     id: 5,
     name: "Headphones",
-    price: 129,
+    price: 10129,
     detail: "Over-ear headphones for an immersive audio experience.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
     category: "Electronics",
@@ -67,7 +67,7 @@ let products = [
   {
     id: 6,
     name: "Jeans",
-    price: 39,
+    price: 10439,
     detail: "Stylish and comfortable jeans for a trendy look.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
@@ -85,7 +85,7 @@ let products = [
   {
     id: 8,
     name: "Gaming Console",
-    price: 399,
+    price: 6399,
     detail: "State-of-the-art gaming console for gaming enthusiasts.",
     image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
     category: "Electronics",
@@ -93,7 +93,7 @@ let products = [
   {
     id: 9,
     name: "Dress Shirt",
-    price: 34,
+    price: 1534,
     detail: "Formal dress shirt for a sharp and professional look.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
@@ -102,7 +102,7 @@ let products = [
   {
     id: 10,
     name: "Running Shorts",
-    price: 19,
+    price: 1519,
     detail: "Comfortable running shorts for active individuals.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
@@ -119,7 +119,7 @@ let products = [
   {
     id: 12,
     name: "Sweater",
-    price: 29,
+    price: 1529,
     detail: "Warm and cozy sweater for chilly days.",
     image:
       "https://www.thehammondsgroup.com/wp-content/uploads/2022/03/white-long-sleeve.png",
@@ -128,7 +128,7 @@ let products = [
   {
     id: 13,
     name: "Yoga Mat",
-    price: 24,
+    price: 3024,
     detail: "High-quality yoga mat for a comfortable yoga practice.",
     image:
       "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
@@ -240,12 +240,13 @@ function displayProducts(products) {
               <p class="product__price">${product.price} $</p>
               <p class="product__cateogry">${product.category}</p>
               <p class="product__detail">${product.detail}</p>
-              <button class="product__edit">Edit</button>
+              <a class="product__edit" href="#editBlock">Edit</a>
               <button class="product__delete">Delete</button>
           </div>`;
   });
   productEventLinstener();
 }
+
 // delete and edit eventlistener
 function productEventLinstener() {
   const productContainers = document.querySelectorAll(".products__product");
