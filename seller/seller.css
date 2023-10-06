@@ -178,10 +178,17 @@
   width: 100px;
   transition: all 0.3s ease-in-out;
 }
+.product__edit{
+  font-size: 13px;
+  padding: 8px 1px;
+  text-decoration: none;
+  color: white;
+}
 .product__edit:hover,
 .product__delete:hover {
   transform: scale(1.2);
 }
+
 /* products to here */
 
 .form {

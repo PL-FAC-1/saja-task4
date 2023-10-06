@@ -1,11 +1,14 @@
 @media screen and (max-width: 1500px) {
-  .cart__cartProduct {
+  .list__listProduct {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0px;
   }
-  .cartProduct__details {
+  .list__listProduct--margin{
+    margin:10px 30px;
+  }
+  .listProduct__details {
     text-align: center;
   }
   .nav__search {
@@ -16,42 +19,45 @@
   }
 }
 @media screen and (max-width: 1020px) {
-  .nav__select {
-    width: 110px;
-    padding: 10px;
-    font-size: 10px;
-  }
   .nav__search {
     padding: 0.5rem 4vw;
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .header__nav {
-    padding: 0px 50px;
+    padding: 10px 50px;
     margin-left: 0px;
   }
   .nav__title {
     display: none;
   }
+  .display__header{
+    justify-content: center;
+    padding: 10px;
+  }
+  .header__filter{
+    width: 120px;
+    font-size: 14px;
+
+  }
   .main__home {
     margin-top: 10px;
-  }
-  .nav__select {
-    width: 100px;
-    padding: 2px;
-    font-size: 10px;
   }
   .home__shopButton {
     margin-left: 10vw;
   }
-}
-@media screen and (max-width: 490px) {
+  .list__listProduct--margin{
+    margin:10px auto;
+  }
+  .listProduct__details{
+    width:70vw;
+  }
   .main__cart {
     margin: 5px;
   }
-  .nav__select {
-    display: none;
-  }
+}
+
+@media screen and (max-width: 490px) {
   .home__shopButton {
     margin-left: 2vw;
     font-size: 20px;
