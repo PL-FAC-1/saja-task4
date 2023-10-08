@@ -1,15 +1,5 @@
-const {
-  getfromLocalStorage,
-  addToLocalStorage,
-  addProduct,
-  clearProducts,
-  deleteProduct,
-  filterProducts,
-} = require("./seller/seller");
-// const {
-//   searchResult
-// } = require("./customer/customer");
-
+import { getfromLocalStorage, addToLocalStorage, addProduct, clearProducts, deleteProduct, filterProducts, editExecute } from './seller/seller.js';
+// mock storage
 const localStorageMock = (() => {
   let store = {};
   return {
@@ -28,35 +18,12 @@ const localStorageMock = (() => {
 // Assign the mock to the global object
 global.localStorage = localStorageMock;
 
-///addTesting
-describe("addToLocalStorage", () => {
-  beforeEach(() => {
-    // Clear localStorage before each test
-    localStorage.clear();
-  });
-  test("products are added into local storage", () => {
-    const mockProduct = {
-      id: 0,
-      name: "car",
-      price: 1000,
-      detail: "white car",
-      image:
-        "https://res.cloudinary.com/carsxe/image/upload/f_auto,fl_lossy,q_auto/v1569282984/carsxe-api/purple_porsche.png",
-      category: "electronics",
-    };
-    addToLocalStorage([mockProduct]);
-    expect(localStorage.getItem("products")).toEqual(
-      JSON.stringify([mockProduct])
-    );
-  });
-});
-// ///getTesting
+////getTesting
 describe("getFromLocalStorage", () => {
   beforeEach(() => {
     // Clear localStorage before each test
     localStorage.clear();
   });
-
   test("retrieve products from localStorage", () => {
     const mockProducts = [
       {
@@ -84,7 +51,29 @@ describe("getFromLocalStorage", () => {
     expect(products).toEqual(mockProducts);
   });
 });
-// //addProductTesting
+///addTolocalSTesting
+describe("addToLocalStorage", () => {
+  beforeEach(() => {
+    // Clear localStorage before each test
+    localStorage.clear();
+  });
+  test("products are added into local storage", () => {
+    const mockProduct = {
+      id: 0,
+      name: "car",
+      price: 1000,
+      detail: "white car",
+      image:
+        "https://res.cloudinary.com/carsxe/image/upload/f_auto,fl_lossy,q_auto/v1569282984/carsxe-api/purple_porsche.png",
+      category: "electronics",
+    };
+    addToLocalStorage([mockProduct]);
+    expect(localStorage.getItem("products")).toEqual(
+      JSON.stringify([mockProduct])
+    );
+  });
+});
+////addProductTesting
 describe("addProduct", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -95,13 +84,14 @@ describe("addProduct", () => {
     addProduct(
       { value: "Name" },
       { value: "Details" },
-      { value: "lkl" },
+      { value: "454" },
       { value: "image.jpg" },
       { value: "sport" }
     );
     const products = getfromLocalStorage();
     expect(products.length).toBe(1);
   });
+
 
 });
 // ///deleteProductTesting
@@ -128,7 +118,7 @@ describe("deleteProduct", () => {
     expect(products.length).toBe(length - 1);
   });
 });
-// ///filterforsearch testing
+/////filterforsearch testing
 describe("filterProducts", () => {
   afterEach(() => {
     // Clear localStorage afer test
@@ -172,26 +162,45 @@ describe("filterProducts", () => {
     expect(result).toBe(true);
   });
 });
-// describe('searchResult function', () => {
-//   const productsToSearch = [
-//     { name: 'Product A' },
-//     { name: 'Product B' },
-//     { name: 'Another Product' },
-//   ];
+//editProduct
+describe('editExecute', () => {
+  let products;
+  beforeEach(() => {
+    localStorage.clear();
+    products = [
+      {
+        id: 0,
+        name: "Running Shoes",
+        price: 10079,
+        detail: "High-performance running shoes for athletes.",
+        image:
+          "https://vader-prod.s3.amazonaws.com/1690535117-race-light-mens-trail-running-shoes-sky-blue-and-black.jpg",
+        category: "Sport",
+      },
+      {
+        id: 1,
+        name: "Smartphone",
+        price: 2799,
+        detail: "The latest smartphone with advanced features.",
+        image: "https://m.media-amazon.com/images/I/51JBovbSnML.jpg",
+        category: "Electronics",
+      },
+    ];
+  });
+  test('should edit product details', () => {
+    const productToEdit = products[0];
+    const newName = 'New Name';
+    const newDetail = 'New Details';
+    const newPrice = 150;
+    const newImage = 'newImage.jpg';
+    const newCategory = 'New Category';
+    editExecute(products,productToEdit, newName, newDetail, newPrice, newImage, newCategory);
+    expect(products[0].name).toBe(newName);
+    expect(products[0].detail).toBe(newDetail);
+    expect(products[0].price).toBe(newPrice);
+    expect(products[0].image).toBe(newImage);
+    expect(products[0].category).toBe(newCategory);
+  });
+});
 
-//   test('should filter products by search term (case insensitive)', () => {
-//     const searchEntry = { value: 'product' };
-//     const result = searchResult(searchEntry, productsToSearch);
-//     expect(result).toEqual([
-//       { name: 'Product A' },
-//       { name: 'Product B' },
-//       { name: 'Another Product' },
-//     ]);
-//   });
 
-//   test('should return an empty array if search term does not match any product', () => {
-//     const searchEntry = { value: 'Nonexistent Product' };
-//     const result = searchResult(searchEntry, productsToSearch);
-//     expect(result).toEqual([]);
-//   });
-// });
