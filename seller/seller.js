@@ -9,6 +9,7 @@ const formInputs = document.querySelectorAll("input");
 const productsList = document.getElementById("productsList");
 const editBlock = document.getElementById("editBlock");
 const searchInput = document.getElementById("searchInput");
+const addDisplay=document.getElementById("addDisplay");
 
 //variables
 let products = [
@@ -151,9 +152,11 @@ let products = [
     category: "Clothes",
   },
 ];
-getfromLocalStorage();
-addToLocalStorage(products);
-displayProducts(products);
+document.addEventListener('DOMContentLoaded', () => {
+  getfromLocalStorage();
+  addToLocalStorage(products);
+  displayProducts(products);
+});
 //////addForm eventlistener(preventdefault, add the product)
 if (addForm) {
   addForm.addEventListener("submit", (event) => {
@@ -168,6 +171,13 @@ if (addForm) {
     );
     displayProducts(products);
   });
+}
+//addformdisplay 
+if(addDisplay){
+  addDisplay.addEventListener("click",()=>{
+    addForm.style.display = "flex";
+    editBlock.innerHTML = "";
+  })
 }
 ////addtProductsToLocalStorageFunction
 function addToLocalStorage(products) {
@@ -315,26 +325,28 @@ function editProduct(product) {
   //edit eventlistener
   editForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    products.map((productElement) => {
-      if (productElement.id == product.id) {
-        productElement.name = nameEdit.value;
-        productElement.detail = detailEdit.value;
-        productElement.price = priceEdit.value;
-        productElement.image = imageEdit.value;
-        productElement.category = categoryEdit.value;
-      }
-    });
+    editExecute(products,product,nameEdit.value,detailEdit.value,priceEdit.value,imageEdit.value,categoryEdit.value);
     editForm.remove();
     addForm.style.display = "flex";
     addToLocalStorage(products);
     displayProducts(products);
   });
 }
-///////////for testing
-function clearProducts() {
-  products = [];
+///
+function editExecute(productsVar,product,name,detail,price,image,category){
+  productsVar.map((productElement) => {
+    if (productElement.id == product.id) {
+      productElement.name = name;
+      productElement.detail = detail;
+      productElement.price = price;
+      productElement.image = image;
+      productElement.category = category;
+      return true; 
+    }
+    return false;
+  }
+  );
 }
-
 ///search products eventlistener
 if (searchInput) {
   searchInput.addEventListener("input", searchProduct);
@@ -354,12 +366,17 @@ function filterProducts(searchEntry) {
   });
   return productDisplayed;
 }
+///////////for testing
+function clearProducts() {
+  products = [];
+}
 
-// module.exports = {
-//   getfromLocalStorage,
-//   addToLocalStorage,
-//   addProduct,
-//   clearProducts,
-//   deleteProduct,
-//   filterProducts
-// };
+export {
+  getfromLocalStorage,
+  addToLocalStorage,
+  addProduct,
+  clearProducts,
+  deleteProduct,
+  filterProducts,
+  editExecute
+};
